@@ -6,30 +6,31 @@ DL_DIR = $(TOP)/dl
 USR_DIR = $(TOP)/ext/usr
 
 .PHONY: all
-all: .stamp_sdk .stamp_gnu_arm
+all: .stamp_sdk .stamp_gnu_arm .stamp_pt .stamp_pio
 
 .PHONY: clean
 clean:
 	-rm -rf $(USR_DIR)
 	-rm -rf $(SDK_DIR)
+	-rm -rf $(PT_DIR)
 	-rm .stamp*
 
 #------------------------------------------------------------------------------
 # pico sdk
 
-SDK_VER = 1.5.0
-SDK_URL = https://github.com/raspberrypi/pico-sdk/releases/download/1.5.0/sdk$(SDK_VER)-with-submodules.zip
-SDK_FILE = pico-sdk-$(SDK_VER).zip
-SDK_ZIP = $(DL_DIR)/$(SDK_FILE)
+SDK_VER = 2.0.0
+SDK_URL = https://github.com/raspberrypi/pico-sdk/releases/download/$(SDK_VER)/pico-sdk-$(SDK_VER).tar.gz
+SDK_FILE = pico-sdk-$(SDK_VER).tar.gz
+SDK_TGZ = $(DL_DIR)/$(SDK_FILE)
 SDK_DIR = $(TOP)/ext/sdk
 
-$(SDK_ZIP):
+$(SDK_TGZ):
 	mkdir -p $(DL_DIR)
-	wget $(SDK_URL) -O $(SDK_ZIP)
+	wget $(SDK_URL) -O $(SDK_TGZ)
 
-.stamp_sdk: $(SDK_ZIP)
+.stamp_sdk: $(SDK_TGZ) .stamp_usb .stamp_tls .stamp_lwip .stamp_bt .stamp_cyw
 	mkdir -p $(SDK_DIR)
-	unzip -q -d $(SDK_DIR) $(SDK_ZIP)
+	tar -C $(SDK_DIR) -zxf $(SDK_TGZ) --strip-components 1
 	touch $@
 
 #------------------------------------------------------------------------------
@@ -47,6 +48,134 @@ $(GNU_ARM_TXZ):
 .stamp_gnu_arm: $(GNU_ARM_TXZ)
 	mkdir -p $(USR_DIR)
 	tar -C $(USR_DIR) -Jxf $(GNU_ARM_TXZ) --strip-components 1
+	touch $@
+
+#------------------------------------------------------------------------------
+# picotool
+
+PT_VER = 2.0.0
+PT_URL = https://github.com/raspberrypi/picotool/releases/download/$(PT_VER)/picotool-$(PT_VER).tar.gz
+PT_FILE = picotool-$(PT_VER).tar.gz
+PT_TGZ = $(DL_DIR)/$(PT_FILE)
+PT_DIR = $(TOP)/ext/picotool
+PT_BUILD = $(PT_DIR)/build
+
+$(PT_TGZ):
+	mkdir -p $(DL_DIR)
+	wget $(PT_URL) -O $(PT_TGZ)
+
+.stamp_pt: $(PT_TGZ) .stamp_sdk
+	mkdir -p $(PT_DIR)
+	tar -C $(PT_DIR) -zxf $(PT_TGZ) --strip-components 1
+	cmake -GNinja \
+		-DPICO_SDK_PATH=$(SDK_DIR) \
+		-DCMAKE_INSTALL_PREFIX=$(USR_DIR) \
+		-DPICOTOOL_NO_LIBUSB=1 \
+		-S $(PT_DIR) -B $(PT_BUILD)
+	ninja -C $(PT_BUILD) install
+	touch $@
+
+#------------------------------------------------------------------------------
+# tinyusb (extract to sdk directory)
+
+USB_VER = 4232642
+USB_URL = https://github.com/hathach/tinyusb/tarball/$(USB_VER)
+USB_FILE = tinyusb-$(USB_VER).tar.gz
+USB_TGZ = $(DL_DIR)/$(USB_FILE)
+USB_DIR = $(SDK_DIR)/lib/tinyusb
+
+$(USB_TGZ):
+	mkdir -p $(DL_DIR)
+	wget $(USB_URL) -O $(USB_TGZ)
+
+.stamp_usb: $(USB_TGZ)
+	mkdir -p $(USB_DIR)
+	tar -C $(USB_DIR) -zxf $(USB_TGZ) --strip-components 1
+	touch $@
+
+#------------------------------------------------------------------------------
+# mbed tls (extract to sdk directory)
+
+TLS_VER = 5a764e5
+TLS_URL = https://github.com/Mbed-TLS/mbedtls/tarball/$(TLS_VER)
+TLS_FILE = mbedtls-$(TLS_VER).tar.gz
+TLS_TGZ = $(DL_DIR)/$(TLS_FILE)
+TLS_DIR = $(SDK_DIR)/lib/mbedtls
+
+$(TLS_TGZ):
+	mkdir -p $(DL_DIR)
+	wget $(TLS_URL) -O $(TLS_TGZ)
+
+.stamp_tls: $(TLS_TGZ)
+	mkdir -p $(TLS_DIR)
+	tar -C $(TLS_DIR) -zxf $(TLS_TGZ) --strip-components 1
+	touch $@
+
+#------------------------------------------------------------------------------
+# lwip (extract to sdk directory)
+
+LWIP_VER = 0a0452b
+LWIP_URL = https://github.com/lwip-tcpip/lwip/tarball/$(LWIP_VER)
+LWIP_FILE = lwip-$(LWIP_VER).tar.gz
+LWIP_TGZ = $(DL_DIR)/$(LWIP_FILE)
+LWIP_DIR = $(SDK_DIR)/lib/lwip
+
+$(LWIP_TGZ):
+	mkdir -p $(DL_DIR)
+	wget $(LWIP_URL) -O $(LWIP_TGZ)
+
+.stamp_lwip: $(LWIP_TGZ)
+	mkdir -p $(LWIP_DIR)
+	tar -C $(LWIP_DIR) -zxf $(LWIP_TGZ) --strip-components 1
+	touch $@
+
+#------------------------------------------------------------------------------
+# btstack (extract to sdk directory)
+
+BT_VER = 2b49e57
+BT_URL = https://github.com/bluekitchen/btstack/tarball/$(BT_VER)
+BT_FILE = btstack-$(BT_VER).tar.gz
+BT_TGZ = $(DL_DIR)/$(BT_FILE)
+BT_DIR = $(SDK_DIR)/lib/btstack
+
+$(BT_TGZ):
+	mkdir -p $(DL_DIR)
+	wget $(BT_URL) -O $(BT_TGZ)
+
+.stamp_bt: $(BT_TGZ)
+	mkdir -p $(BT_DIR)
+	tar -C $(BT_DIR) -zxf $(BT_TGZ) --strip-components 1
+	touch $@
+
+#------------------------------------------------------------------------------
+# cyw43 driver (extract to sdk directory)
+
+CYW_VER = faf3638
+CYW_URL = https://github.com/georgerobotics/cyw43-driver/tarball/$(CYW_VER)
+CYW_FILE = cyw43-driver-$(CYW_VER).tar.gz
+CYW_TGZ = $(DL_DIR)/$(CYW_FILE)
+CYW_DIR = $(SDK_DIR)/lib/cyw43-driver
+
+$(CYW_TGZ):
+	mkdir -p $(DL_DIR)
+	wget $(CYW_URL) -O $(CYW_TGZ)
+
+.stamp_cyw: $(CYW_TGZ)
+	mkdir -p $(CYW_DIR)
+	tar -C $(CYW_DIR) -zxf $(CYW_TGZ) --strip-components 1
+	touch $@
+
+#------------------------------------------------------------------------------
+# pioasm
+
+PIO_DIR = $(SDK_DIR)/tools/pioasm
+PIO_BUILD = $(SDK_DIR)/build
+
+.stamp_pio: .stamp_sdk
+	cmake -GNinja \
+		-DCMAKE_INSTALL_PREFIX=$(USR_DIR) \
+		-S $(PIO_DIR) -B $(PIO_BUILD)
+	ninja -C $(PIO_BUILD) install
 	touch $@
 
 #------------------------------------------------------------------------------

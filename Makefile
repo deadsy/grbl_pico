@@ -1,4 +1,5 @@
 #------------------------------------------------------------------------------
+# Makefile for grblHal running on pico/pico2 devices
 
 TOP = $(shell realpath .)
 
@@ -7,19 +8,19 @@ SRC = $(TOP)/src
 
 SDK_PATH = $(EXT)/sdk
 TOOLS_PATH = $(EXT)/usr/bin
+PICOTOOL = $(EXT)/usr/lib/cmake/picotool
+PIOASM = $(EXT)/usr/lib/cmake/pioasm
 
 #------------------------------------------------------------------------------
 
 # pick a board
 BOARD = pico
 #BOARD = pico2
-#BOARD = vgaboard
 #BOARD = pimoroni_pico_plus2_rp2350
 
 # pick a compiler
 #COMPILER = pico_riscv_gcc
-COMPILER = pico_arm_gcc
-#COMPILER = pico_arm_cortex_m0plus_gcc
+COMPILER = pico_arm_cortex_m0plus_gcc
 #COMPILER = pico_arm_cortex_m33_gcc
 
 # pick a platform
@@ -35,6 +36,8 @@ all: .stamp_ext .stamp_src
 	cmake -GNinja -S $(SRC_PATH) -B $(BLD_PATH) \
 		-DPICO_SDK_PATH=$(SDK_PATH) \
 		-DPICO_TOOLCHAIN_PATH=$(TOOLS_PATH) \
+		-Dpicotool_DIR=$(PICOTOOL) \
+		-Dpioasm_DIR=$(PIOASM) \
 		-DPICO_PLATFORM=$(PLATFORM) \
 		-DPICO_COMPILER=$(COMPILER) \
 		-DPICO_BOARD=$(BOARD)
