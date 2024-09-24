@@ -4,4 +4,4 @@ dl
 ext/picotool
 ext/sdk
 ext/usr
-ext/.stamp*
+src/rp2040
