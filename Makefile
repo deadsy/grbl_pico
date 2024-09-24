@@ -7,8 +7,6 @@ SRC = $(TOP)/src
 
 SDK_PATH = $(EXT)/sdk
 TOOLS_PATH = $(EXT)/usr/bin
-PICOTOOL = $(EXT)/usr/lib/cmake/picotool
-PIOASM = $(EXT)/usr/lib/cmake/pioasm
 
 #------------------------------------------------------------------------------
 
@@ -37,8 +35,6 @@ all: .stamp_ext .stamp_src
 	cmake -GNinja -S $(SRC_PATH) -B $(BLD_PATH) \
 		-DPICO_SDK_PATH=$(SDK_PATH) \
 		-DPICO_TOOLCHAIN_PATH=$(TOOLS_PATH) \
-		-Dpicotool_DIR=$(PICOTOOL) \
-		-Dpioasm_DIR=$(PIOASM) \
 		-DPICO_PLATFORM=$(PLATFORM) \
 		-DPICO_COMPILER=$(COMPILER) \
 		-DPICO_BOARD=$(BOARD)

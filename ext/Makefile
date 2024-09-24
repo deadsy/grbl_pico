@@ -6,13 +6,12 @@ DL_DIR = $(TOP)/dl
 USR_DIR = $(TOP)/ext/usr
 
 .PHONY: all
-all: .stamp_sdk .stamp_gnu_arm .stamp_pt .stamp_pio
+all: .stamp_sdk .stamp_gnu_arm
 
 .PHONY: clean
 clean:
 	-rm -rf $(USR_DIR)
 	-rm -rf $(SDK_DIR)
-	-rm -rf $(PT_DIR)
 	-rm .stamp*
 
 #------------------------------------------------------------------------------
@@ -48,45 +47,6 @@ $(GNU_ARM_TXZ):
 .stamp_gnu_arm: $(GNU_ARM_TXZ)
 	mkdir -p $(USR_DIR)
 	tar -C $(USR_DIR) -Jxf $(GNU_ARM_TXZ) --strip-components 1
-	touch $@
-
-#------------------------------------------------------------------------------
-# picotool
-
-PT_VER = 1.1.2
-PT_URL = https://github.com/raspberrypi/picotool/archive/refs/tags/$(PT_VER).tar.gz
-PT_FILE = picotool-$(PT_VER).tar.gz
-PT_TGZ = $(DL_DIR)/$(PT_FILE)
-PT_DIR = $(TOP)/ext/picotool
-PT_BUILD = $(PT_DIR)/build
-
-$(PT_TGZ):
-	mkdir -p $(DL_DIR)
-	wget $(PT_URL) -O $(PT_TGZ)
-
-.stamp_pt: $(PT_TGZ) .stamp_sdk
-	mkdir -p $(PT_DIR)
-	tar -C $(PT_DIR) -zxf $(PT_TGZ) --strip-components 1
-	cmake -GNinja \
-		-DPICO_SDK_PATH=$(SDK_DIR) \
-		-DCMAKE_INSTALL_PREFIX=$(USR_DIR) \
-		-S $(PT_DIR) -B $(PT_BUILD)
-	ninja -C $(PT_BUILD) install
-	touch $@
-
-#------------------------------------------------------------------------------
-# pioasm
-
-PIO_DIR = $(SDK_DIR)/tools/pioasm
-PIO_BUILD = $(SDK_DIR)/build
-
-.stamp_pio: .stamp_sdk
-	cmake -GNinja \
-		-DCMAKE_INSTALL_PREFIX=$(USR_DIR) \
-		-S $(PIO_DIR) -B $(PIO_BUILD)
-	ninja -C $(PIO_BUILD) all
-	mkdir -p $(USR_DIR)/bin
-	cp $(PIO_BUILD)/pioasm $(USR_DIR)/bin
 	touch $@
 
 #------------------------------------------------------------------------------
