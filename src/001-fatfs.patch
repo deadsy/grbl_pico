@@ -1,0 +1,14 @@
+If the hashed LFN has a non-zero most significant nybble (32-bit) we try to write "~" at a bad array index.
+Don't let i be decremented from 0.
+--- a/fatfs/ff.c	2024-09-24 15:58:36.567201049 -0700
++++ b/fatfs/ff.c	2024-09-24 15:59:18.502799349 -0700
+@@ -2012,7 +2012,8 @@
+ 	do {
+ 		c = (BYTE)((seq % 16) + '0');
+ 		if (c > '9') c += 7;
+-		ns[i--] = c;
++		ns[i] = c;
++		if (i > 0) i--;
+ 		seq /= 16;
+ 	} while (seq);
+ 	ns[i] = '~';
