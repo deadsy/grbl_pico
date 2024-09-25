@@ -50,7 +50,7 @@ def main():
         print(f"\twget $({url_name}) -O $({tgz_name})")
         print()
 
-        print(f".stamp_{name}: .stamp_rp2040 $({tgz_name})")
+        print(f".stamp_{name}: $({tgz_name})")
         print(f"\tmkdir -p $({dir_name})")
         print(f"\ttar -C $({dir_name}) -zxf $({tgz_name}) --strip-components 1")
         print("\ttouch $@")

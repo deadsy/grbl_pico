@@ -40,10 +40,11 @@ $(RP2040_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(RP2040_URL) -O $(RP2040_TGZ)
 
-.stamp_rp2040: .stamp_rp2040 $(RP2040_TGZ)
+.stamp_rp2040: $(RP2040_TGZ)
 	mkdir -p $(RP2040_DIR)
 	tar -C $(RP2040_DIR) -zxf $(RP2040_TGZ) --strip-components 1
 	patch -d $(RP2040_DIR) -p1 < 001-fatfs.patch
+	patch -d $(RP2040_DIR) -p1 < 002-pico-cnc.patch
 	touch $@
 
 #-------------------------------------------------------------------------------
@@ -59,7 +60,7 @@ $(GRBL_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(GRBL_URL) -O $(GRBL_TGZ)
 
-.stamp_grbl: .stamp_rp2040 $(GRBL_TGZ)
+.stamp_grbl: $(GRBL_TGZ)
 	mkdir -p $(GRBL_DIR)
 	tar -C $(GRBL_DIR) -zxf $(GRBL_TGZ) --strip-components 1
 	touch $@
@@ -77,7 +78,7 @@ $(MOTORS_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(MOTORS_URL) -O $(MOTORS_TGZ)
 
-.stamp_motors: .stamp_rp2040 $(MOTORS_TGZ)
+.stamp_motors: $(MOTORS_TGZ)
 	mkdir -p $(MOTORS_DIR)
 	tar -C $(MOTORS_DIR) -zxf $(MOTORS_TGZ) --strip-components 1
 	touch $@
@@ -95,7 +96,7 @@ $(SPINDLE_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(SPINDLE_URL) -O $(SPINDLE_TGZ)
 
-.stamp_spindle: .stamp_rp2040 $(SPINDLE_TGZ)
+.stamp_spindle: $(SPINDLE_TGZ)
 	mkdir -p $(SPINDLE_DIR)
 	tar -C $(SPINDLE_DIR) -zxf $(SPINDLE_TGZ) --strip-components 1
 	touch $@
@@ -113,7 +114,7 @@ $(TRINAMIC_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(TRINAMIC_URL) -O $(TRINAMIC_TGZ)
 
-.stamp_trinamic: .stamp_rp2040 $(TRINAMIC_TGZ)
+.stamp_trinamic: $(TRINAMIC_TGZ)
 	mkdir -p $(TRINAMIC_DIR)
 	tar -C $(TRINAMIC_DIR) -zxf $(TRINAMIC_TGZ) --strip-components 1
 	touch $@
@@ -131,7 +132,7 @@ $(SDCARD_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(SDCARD_URL) -O $(SDCARD_TGZ)
 
-.stamp_sdcard: .stamp_rp2040 $(SDCARD_TGZ)
+.stamp_sdcard: $(SDCARD_TGZ)
 	mkdir -p $(SDCARD_DIR)
 	tar -C $(SDCARD_DIR) -zxf $(SDCARD_TGZ) --strip-components 1
 	touch $@
@@ -149,7 +150,7 @@ $(KEYPAD_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(KEYPAD_URL) -O $(KEYPAD_TGZ)
 
-.stamp_keypad: .stamp_rp2040 $(KEYPAD_TGZ)
+.stamp_keypad: $(KEYPAD_TGZ)
 	mkdir -p $(KEYPAD_DIR)
 	tar -C $(KEYPAD_DIR) -zxf $(KEYPAD_TGZ) --strip-components 1
 	touch $@
@@ -167,7 +168,7 @@ $(EEPROM_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(EEPROM_URL) -O $(EEPROM_TGZ)
 
-.stamp_eeprom: .stamp_rp2040 $(EEPROM_TGZ)
+.stamp_eeprom: $(EEPROM_TGZ)
 	mkdir -p $(EEPROM_DIR)
 	tar -C $(EEPROM_DIR) -zxf $(EEPROM_TGZ) --strip-components 1
 	touch $@
@@ -185,7 +186,7 @@ $(FANS_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(FANS_URL) -O $(FANS_TGZ)
 
-.stamp_fans: .stamp_rp2040 $(FANS_TGZ)
+.stamp_fans: $(FANS_TGZ)
 	mkdir -p $(FANS_DIR)
 	tar -C $(FANS_DIR) -zxf $(FANS_TGZ) --strip-components 1
 	touch $@
@@ -203,7 +204,7 @@ $(BLUETOOTH_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(BLUETOOTH_URL) -O $(BLUETOOTH_TGZ)
 
-.stamp_bluetooth: .stamp_rp2040 $(BLUETOOTH_TGZ)
+.stamp_bluetooth: $(BLUETOOTH_TGZ)
 	mkdir -p $(BLUETOOTH_DIR)
 	tar -C $(BLUETOOTH_DIR) -zxf $(BLUETOOTH_TGZ) --strip-components 1
 	touch $@
@@ -221,7 +222,7 @@ $(EMBROIDERY_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(EMBROIDERY_URL) -O $(EMBROIDERY_TGZ)
 
-.stamp_embroidery: .stamp_rp2040 $(EMBROIDERY_TGZ)
+.stamp_embroidery: $(EMBROIDERY_TGZ)
 	mkdir -p $(EMBROIDERY_DIR)
 	tar -C $(EMBROIDERY_DIR) -zxf $(EMBROIDERY_TGZ) --strip-components 1
 	touch $@
@@ -239,7 +240,7 @@ $(LASER_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(LASER_URL) -O $(LASER_TGZ)
 
-.stamp_laser: .stamp_rp2040 $(LASER_TGZ)
+.stamp_laser: $(LASER_TGZ)
 	mkdir -p $(LASER_DIR)
 	tar -C $(LASER_DIR) -zxf $(LASER_TGZ) --strip-components 1
 	touch $@
@@ -257,7 +258,7 @@ $(PLUGINS_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(PLUGINS_URL) -O $(PLUGINS_TGZ)
 
-.stamp_plugins: .stamp_rp2040 $(PLUGINS_TGZ)
+.stamp_plugins: $(PLUGINS_TGZ)
 	mkdir -p $(PLUGINS_DIR)
 	tar -C $(PLUGINS_DIR) -zxf $(PLUGINS_TGZ) --strip-components 1
 	touch $@
@@ -275,7 +276,7 @@ $(NETWORKING_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(NETWORKING_URL) -O $(NETWORKING_TGZ)
 
-.stamp_networking: .stamp_rp2040 $(NETWORKING_TGZ)
+.stamp_networking: $(NETWORKING_TGZ)
 	mkdir -p $(NETWORKING_DIR)
 	tar -C $(NETWORKING_DIR) -zxf $(NETWORKING_TGZ) --strip-components 1
 	touch $@
@@ -293,7 +294,7 @@ $(WEBUI_TGZ):
 	mkdir -p $(DL_DIR)
 	wget $(WEBUI_URL) -O $(WEBUI_TGZ)
 
-.stamp_webui: .stamp_rp2040 $(WEBUI_TGZ)
+.stamp_webui: $(WEBUI_TGZ)
 	mkdir -p $(WEBUI_DIR)
 	tar -C $(WEBUI_DIR) -zxf $(WEBUI_TGZ) --strip-components 1
 	touch $@

@@ -9,8 +9,9 @@ Build grblHAL for RPi Pico Devices
  * cmake >= 3.13 (https://cmake.org/)
  * ninja >= 1.9.0 (https://ninja-build.org/)
 
-## Deviations
-  * Uses pico sdk 2.0.0
+## Notes
+  * Uses pico sdk 2.0.0.
+  * Builds for the pico-cnc board (https://github.com/phil-barrett/PicoCNC)
 
 ## Status
  * Builds for pico (rp2040) boards.
