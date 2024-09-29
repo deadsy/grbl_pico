@@ -44,7 +44,7 @@ $(RP2040_TGZ):
 	mkdir -p $(RP2040_DIR)
 	tar -C $(RP2040_DIR) -zxf $(RP2040_TGZ) --strip-components 1
 	patch -d $(RP2040_DIR) -p1 < 001-fatfs.patch
-	patch -d $(RP2040_DIR) -p1 < 002-pico-cnc.patch
+	patch -d $(RP2040_DIR) -p1 < 002-config.patch
 	touch $@
 
 #-------------------------------------------------------------------------------

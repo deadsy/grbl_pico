@@ -1,0 +1,24 @@
+--- a/my_machine.h	2024-09-25 04:39:44.115554684 -0700
++++ b/my_machine.h	2024-09-28 13:54:32.234712933 -0700
+@@ -21,7 +21,7 @@
+ 
+ // NOTE: Only one board may be enabled!
+ // If none is enabled pin mappings from generic_map.h will be used.
+-//#define BOARD_PICO_CNC
++#define BOARD_PICO_CNC
+ //#define BOARD_PICOBOB
+ //#define BOARD_PICOBOB_G540
+ //#define BOARD_PICOBOB_DLX
+@@ -35,9 +35,9 @@
+ // Configuration
+ // Uncomment to enable.
+ 
+-#ifndef USB_SERIAL_CDC
+-#define USB_SERIAL_CDC          1 // Serial communication via native USB.
+-#endif
++//#ifndef USB_SERIAL_CDC
++//#define USB_SERIAL_CDC          1 // Serial communication via native USB.
++//#endif
+ //#define BLUETOOTH_ENABLE        2 // Set to 2 for HC-05 module, enable in CMakeLists.txt if for Pico W Bluetooth.
+ // Spindle selection:
+ // Up to four specific spindle drivers can be instantiated at a time
