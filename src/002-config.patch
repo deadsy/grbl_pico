@@ -1,15 +1,15 @@
---- a/my_machine.h	2024-09-25 04:39:44.115554684 -0700
-+++ b/my_machine.h	2024-09-28 13:54:32.234712933 -0700
+--- a/my_machine.h	2025-01-18 11:33:00.351266809 -0800
++++ b/my_machine.h	2025-01-18 11:33:38.523395486 -0800
 @@ -21,7 +21,7 @@
  
  // NOTE: Only one board may be enabled!
  // If none is enabled pin mappings from generic_map.h will be used.
 -//#define BOARD_PICO_CNC
 +#define BOARD_PICO_CNC
+ //#define BOARD_RP23U5XBB
  //#define BOARD_PICOBOB
  //#define BOARD_PICOBOB_G540
- //#define BOARD_PICOBOB_DLX
-@@ -35,9 +35,9 @@
+@@ -37,9 +37,9 @@
  // Configuration
  // Uncomment to enable.
  

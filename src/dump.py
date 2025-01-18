@@ -1,21 +1,21 @@
 #!/bin/python3
 
 modules = (
-    ("rp2040", "f1f67ce", "https://github.com/grblHAL/RP2040"),
-    ("grbl", "3ef6763", "https://github.com/grblHAL/core"),
-    ("motors", "87b9056", "https://github.com/grblHAL/Plugins_motor"),
-    ("spindle", "e74a491", "https://github.com/grblHAL/Plugins_spindle"),
-    ("trinamic", "7f98ff4", "https://github.com/terjeio/Trinamic-library"),
-    ("sdcard", "fa60b71", "https://github.com/grblHAL/Plugin_SD_card"),
-    ("keypad", "34cc8e9", "https://github.com/grblHAL/Plugin_I2C_keypad"),
-    ("eeprom", "fd157b3", "https://github.com/grblHAL/Plugin_EEPROM"),
-    ("fans", "3f261aa", "https://github.com/grblHAL/Plugin_fans"),
-    ("bluetooth", "8298c1b", "https://github.com/grblHAL/Plugins_Bluetooth"),
-    ("embroidery", "1e556ac", "https://github.com/grblHAL/Plugin_embroidery"),
-    ("laser", "3b25965", "https://github.com/grblHAL/Plugins_laser"),
-    ("plugins", "0d081ae", "https://github.com/grblHAL/Plugins_misc"),
-    ("networking", "5fd1e25", "https://github.com/grblHAL/Plugin_networking"),
-    ("webui", "1981aef", "https://github.com/grblHAL/Plugin_WebUI"),
+    ("rp2040", "4a87c4d", "https://github.com/grblHAL/RP2040"),
+    ("grbl", "5f135ed", "https://github.com/grblHAL/core"),
+    ("motors", "431145a", "https://github.com/grblHAL/Plugins_motor"),
+    ("spindle", "54ab2ab", "https://github.com/grblHAL/Plugins_spindle"),
+    ("trinamic", "59ab5aa", "https://github.com/terjeio/Trinamic-library"),
+    ("sdcard", "5350a9c", "https://github.com/grblHAL/Plugin_SD_card"),
+    ("keypad", "05c2acc", "https://github.com/grblHAL/Plugin_I2C_keypad"),
+    ("eeprom", "c87febc", "https://github.com/grblHAL/Plugin_EEPROM"),
+    ("fans", "61d80fa", "https://github.com/grblHAL/Plugin_fans"),
+    ("bluetooth", "aa0e42b", "https://github.com/grblHAL/Plugins_Bluetooth"),
+    ("embroidery", "602b262", "https://github.com/grblHAL/Plugin_embroidery"),
+    ("laser", "a95e09e", "https://github.com/grblHAL/Plugins_laser"),
+    ("plugins", "5cf8493", "https://github.com/grblHAL/Plugins_misc"),
+    ("networking", "23bb4d5", "https://github.com/grblHAL/Plugin_networking"),
+    ("webui", "df8f1db", "https://github.com/grblHAL/Plugin_WebUI"),
 )
 
 comment = "#" + "".join(("-",) * 79)

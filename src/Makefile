@@ -28,9 +28,9 @@ clean:
 	-rm .stamp*
 
 #-------------------------------------------------------------------------------
-# rp2040 @ f1f67ce
+# rp2040 @ 4a87c4d
 
-RP2040_VER = f1f67ce
+RP2040_VER = 4a87c4d
 RP2040_URL = https://github.com/grblHAL/RP2040/tarball/$(RP2040_VER)
 RP2040_FILE = rp2040-$(RP2040_VER).tar.gz
 RP2040_TGZ = $(DL_DIR)/$(RP2040_FILE)
@@ -48,9 +48,9 @@ $(RP2040_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# grbl @ 3ef6763
+# grbl @ 5f135ed
 
-GRBL_VER = 3ef6763
+GRBL_VER = 5f135ed
 GRBL_URL = https://github.com/grblHAL/core/tarball/$(GRBL_VER)
 GRBL_FILE = grbl-$(GRBL_VER).tar.gz
 GRBL_TGZ = $(DL_DIR)/$(GRBL_FILE)
@@ -66,9 +66,9 @@ $(GRBL_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# motors @ 87b9056
+# motors @ 431145a
 
-MOTORS_VER = 87b9056
+MOTORS_VER = 431145a
 MOTORS_URL = https://github.com/grblHAL/Plugins_motor/tarball/$(MOTORS_VER)
 MOTORS_FILE = motors-$(MOTORS_VER).tar.gz
 MOTORS_TGZ = $(DL_DIR)/$(MOTORS_FILE)
@@ -84,9 +84,9 @@ $(MOTORS_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# spindle @ e74a491
+# spindle @ 54ab2ab
 
-SPINDLE_VER = e74a491
+SPINDLE_VER = 54ab2ab
 SPINDLE_URL = https://github.com/grblHAL/Plugins_spindle/tarball/$(SPINDLE_VER)
 SPINDLE_FILE = spindle-$(SPINDLE_VER).tar.gz
 SPINDLE_TGZ = $(DL_DIR)/$(SPINDLE_FILE)
@@ -102,9 +102,9 @@ $(SPINDLE_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# trinamic @ 7f98ff4
+# trinamic @ 59ab5aa
 
-TRINAMIC_VER = 7f98ff4
+TRINAMIC_VER = 59ab5aa
 TRINAMIC_URL = https://github.com/terjeio/Trinamic-library/tarball/$(TRINAMIC_VER)
 TRINAMIC_FILE = trinamic-$(TRINAMIC_VER).tar.gz
 TRINAMIC_TGZ = $(DL_DIR)/$(TRINAMIC_FILE)
@@ -120,9 +120,9 @@ $(TRINAMIC_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# sdcard @ fa60b71
+# sdcard @ 5350a9c
 
-SDCARD_VER = fa60b71
+SDCARD_VER = 5350a9c
 SDCARD_URL = https://github.com/grblHAL/Plugin_SD_card/tarball/$(SDCARD_VER)
 SDCARD_FILE = sdcard-$(SDCARD_VER).tar.gz
 SDCARD_TGZ = $(DL_DIR)/$(SDCARD_FILE)
@@ -138,9 +138,9 @@ $(SDCARD_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# keypad @ 34cc8e9
+# keypad @ 05c2acc
 
-KEYPAD_VER = 34cc8e9
+KEYPAD_VER = 05c2acc
 KEYPAD_URL = https://github.com/grblHAL/Plugin_I2C_keypad/tarball/$(KEYPAD_VER)
 KEYPAD_FILE = keypad-$(KEYPAD_VER).tar.gz
 KEYPAD_TGZ = $(DL_DIR)/$(KEYPAD_FILE)
@@ -156,9 +156,9 @@ $(KEYPAD_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# eeprom @ fd157b3
+# eeprom @ c87febc
 
-EEPROM_VER = fd157b3
+EEPROM_VER = c87febc
 EEPROM_URL = https://github.com/grblHAL/Plugin_EEPROM/tarball/$(EEPROM_VER)
 EEPROM_FILE = eeprom-$(EEPROM_VER).tar.gz
 EEPROM_TGZ = $(DL_DIR)/$(EEPROM_FILE)
@@ -174,9 +174,9 @@ $(EEPROM_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# fans @ 3f261aa
+# fans @ 61d80fa
 
-FANS_VER = 3f261aa
+FANS_VER = 61d80fa
 FANS_URL = https://github.com/grblHAL/Plugin_fans/tarball/$(FANS_VER)
 FANS_FILE = fans-$(FANS_VER).tar.gz
 FANS_TGZ = $(DL_DIR)/$(FANS_FILE)
@@ -192,9 +192,9 @@ $(FANS_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# bluetooth @ 8298c1b
+# bluetooth @ aa0e42b
 
-BLUETOOTH_VER = 8298c1b
+BLUETOOTH_VER = aa0e42b
 BLUETOOTH_URL = https://github.com/grblHAL/Plugins_Bluetooth/tarball/$(BLUETOOTH_VER)
 BLUETOOTH_FILE = bluetooth-$(BLUETOOTH_VER).tar.gz
 BLUETOOTH_TGZ = $(DL_DIR)/$(BLUETOOTH_FILE)
@@ -210,9 +210,9 @@ $(BLUETOOTH_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# embroidery @ 1e556ac
+# embroidery @ 602b262
 
-EMBROIDERY_VER = 1e556ac
+EMBROIDERY_VER = 602b262
 EMBROIDERY_URL = https://github.com/grblHAL/Plugin_embroidery/tarball/$(EMBROIDERY_VER)
 EMBROIDERY_FILE = embroidery-$(EMBROIDERY_VER).tar.gz
 EMBROIDERY_TGZ = $(DL_DIR)/$(EMBROIDERY_FILE)
@@ -228,9 +228,9 @@ $(EMBROIDERY_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# laser @ 3b25965
+# laser @ a95e09e
 
-LASER_VER = 3b25965
+LASER_VER = a95e09e
 LASER_URL = https://github.com/grblHAL/Plugins_laser/tarball/$(LASER_VER)
 LASER_FILE = laser-$(LASER_VER).tar.gz
 LASER_TGZ = $(DL_DIR)/$(LASER_FILE)
@@ -246,9 +246,9 @@ $(LASER_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# plugins @ 0d081ae
+# plugins @ 5cf8493
 
-PLUGINS_VER = 0d081ae
+PLUGINS_VER = 5cf8493
 PLUGINS_URL = https://github.com/grblHAL/Plugins_misc/tarball/$(PLUGINS_VER)
 PLUGINS_FILE = plugins-$(PLUGINS_VER).tar.gz
 PLUGINS_TGZ = $(DL_DIR)/$(PLUGINS_FILE)
@@ -264,9 +264,9 @@ $(PLUGINS_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# networking @ 5fd1e25
+# networking @ 23bb4d5
 
-NETWORKING_VER = 5fd1e25
+NETWORKING_VER = 23bb4d5
 NETWORKING_URL = https://github.com/grblHAL/Plugin_networking/tarball/$(NETWORKING_VER)
 NETWORKING_FILE = networking-$(NETWORKING_VER).tar.gz
 NETWORKING_TGZ = $(DL_DIR)/$(NETWORKING_FILE)
@@ -282,9 +282,9 @@ $(NETWORKING_TGZ):
 	touch $@
 
 #-------------------------------------------------------------------------------
-# webui @ 1981aef
+# webui @ df8f1db
 
-WEBUI_VER = 1981aef
+WEBUI_VER = df8f1db
 WEBUI_URL = https://github.com/grblHAL/Plugin_WebUI/tarball/$(WEBUI_VER)
 WEBUI_FILE = webui-$(WEBUI_VER).tar.gz
 WEBUI_TGZ = $(DL_DIR)/$(WEBUI_FILE)
